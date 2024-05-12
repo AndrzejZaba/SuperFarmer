@@ -17,7 +17,7 @@ namespace SuperFarmer.Services
             var game = new Game
             {
                 Id = 1,
-                CurrentPlayerId = 0,
+                CurrentPlayerId = 1,
                 State = GameState.Started
             };
 
@@ -26,7 +26,9 @@ namespace SuperFarmer.Services
                 game.Players.Add(new Player
                 {
                     Id = i,
-                    Name = "Gracz " + (i+1).ToString()
+                    Name = "Gracz " + i.ToString(),
+                    IsDiceRolled = false,
+                    IsTradeDone = false,
                 });
             }
 

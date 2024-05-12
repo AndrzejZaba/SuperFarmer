@@ -10,6 +10,9 @@ namespace SuperFarmer.Services
         public Dice Dice2 { get; set; }
         public DiceService()
         {
+            Dice1 = new Dice();
+            Dice2 = new Dice();
+
             Dice1.Faces.AddRange(Enumerable.Repeat(AnimalType.Rabbit, 6));
             Dice1.Faces.AddRange(Enumerable.Repeat(AnimalType.Sheep, 3));
             Dice1.Faces.Add(AnimalType.Pig);

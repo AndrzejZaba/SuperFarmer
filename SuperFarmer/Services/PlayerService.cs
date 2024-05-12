@@ -13,6 +13,13 @@ namespace SuperFarmer.Services
             _gameDataService = gameDataService;
         }
 
+        public Player GetCurrentPlayer()
+        {
+            var game = _gameDataService.GetGameData();
+
+            return game.Players.Where(x => x.Id == game.CurrentPlayerId).FirstOrDefault();
+        }
+
         public Player GetNextPlayer()
         {
             var game = _gameDataService.GetGameData();

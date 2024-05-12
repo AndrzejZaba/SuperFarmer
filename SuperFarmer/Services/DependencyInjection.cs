@@ -9,6 +9,7 @@ namespace SuperFarmer.Services
             services.AddScoped<IGamePreparationService, GamePreparationService>();
             services.AddScoped<IGameDataService, GameDataService>();
             services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IDiceService, DiceService>();
 
             return services;
         }

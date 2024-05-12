@@ -1,11 +1,11 @@
-﻿@model Player
+﻿@model PlayerPanelVm
 
 <!-- Załóżmy, że plik _Layout zawiera odniesienia do Bootstrapa -->
 @{
     ViewData["Title"] = "Player Panel";
 }
 
-<h2>Player Panel: @Model.Name</h2>
+<h2>Player Panel: @Model.Player.Name</h2>
 
 <div class="container mt-4">
     <div class="row">
@@ -19,7 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var animal in Model.Animals)
+                    @foreach (var animal in Model.Player.Animals)
                     {
                         <tr>
                             <td>@*<i class="@GetAnimalIcon(animal.Key) me-2"></i>*@@animal.Key</td>
@@ -31,10 +31,20 @@
         </div>
         <div class="col-12 col-md-6">
             <h3>Dice Roll:</h3>
+            @if (Model.Player.IsDiceRolled)
+            {
             <p class="fs-4">
-                <span class="badge bg-primary me-2">Królik</span>
-                <span class="badge bg-secondary">Owca</span>
+                <span class="badge bg-primary me-2">@Model.DiceRsult[0]</span>
+                <span class="badge bg-secondary">@Model.DiceRsult[1]</span>
             </p>
+            <br />
+            <a href="/Game/PlayerPanel/true/true" class="btn btn-primary">Kolejny gracz</a>   
+            }
+            else
+            {
+            <a href="/Game/PlayerPanel/true/false" class="btn btn-primary">Rzuć kośćmi</a>    
+            }
+            
 
             <h3>Trade Options:</h3>
             <div class="table-responsive">
@@ -52,7 +62,7 @@
                             <tr>
                                 <td>krowa</td>
                                 <td>2 króliki</td>
-                                @if(!Model.IsTradeDone)
+                                @if(!Model.Player.IsTradeDone)
                                 {
                                     <td><button class="btn btn-success">Trade</button></td>
                                 }
@@ -60,7 +70,7 @@
                             <tr>
                                 <td>krowa</td>
                                 <td>2 króliki</td>
-                                @if(!Model.IsTradeDone)
+                                @if(!Model.Player.IsTradeDone)
                                 {
                                     <td><button class="btn btn-success">Trade</button></td>
                                 }
@@ -68,7 +78,7 @@
                             <tr>
                                 <td>krowa</td>
                                 <td>2 króliki</td>
-                                @if(!Model.IsTradeDone)
+                                @if(!Model.Player.IsTradeDone)
                                 {
                                     <td><button class="btn btn-success">Trade</button></td>
                                 }
