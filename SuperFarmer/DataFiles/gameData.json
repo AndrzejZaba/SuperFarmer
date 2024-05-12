@@ -1,0 +1,59 @@
+{
+    "Id": 1,
+    "Players": [
+        {
+            "Id": 0,
+            "Name": "Gracz 1",
+            "Animals": {
+                "Rabbit": 1,
+                "Sheep": 0,
+                "Pig": 0,
+                "Cow": 0,
+                "Horse": 0,
+                "SmallDog": 0,
+                "BigDog": 0
+            }
+        },
+        {
+            "Id": 1,
+            "Name": "Gracz 2",
+            "Animals": {
+                "Rabbit": 1,
+                "Sheep": 0,
+                "Pig": 0,
+                "Cow": 0,
+                "Horse": 0,
+                "SmallDog": 0,
+                "BigDog": 0
+            }
+        },
+        {
+            "Id": 2,
+            "Name": "Gracz 3",
+            "Animals": {
+                "Rabbit": 1,
+                "Sheep": 0,
+                "Pig": 0,
+                "Cow": 0,
+                "Horse": 0,
+                "SmallDog": 0,
+                "BigDog": 0
+            }
+        },
+        {
+            "Id": 3,
+            "Name": "Gracz 4",
+            "Animals": {
+                "Rabbit": 1,
+                "Sheep": 0,
+                "Pig": 0,
+                "Cow": 0,
+                "Horse": 0,
+                "SmallDog": 0,
+                "BigDog": 0
+            }
+        }
+    ],
+    "CurrentPlayerId": 1,
+    "State": 0
+}

@@ -26,7 +26,7 @@ namespace SuperFarmer.Services
                 game.Players.Add(new Player
                 {
                     Id = i,
-                    Name = "Gracz " + i.ToString()
+                    Name = "Gracz " + (i+1).ToString()
                 });
             }
 

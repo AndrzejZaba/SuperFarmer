@@ -1,0 +1,86 @@
+﻿@model PlayerViewModel
+
+<!-- Załóżmy, że plik _Layout zawiera odniesienia do Bootstrapa -->
+@{
+    ViewData["Title"] = "Player Panel";
+}
+
+<h2>Player Panel: @Model.Player.Name</h2>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h3>Your Animals:</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Animal</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var animal in Model.Player.Animals)
+                    {
+                        <tr>
+                            <td>@*<i class="@GetAnimalIcon(animal.Key) me-2"></i>*@@animal.Key</td>
+                            <td>@animal.Value</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-12 col-md-6">
+            <h3>Dice Roll:</h3>
+            <p class="fs-4">
+                <span class="badge bg-primary me-2">Królik</span>
+                <span class="badge bg-secondary">Owca</span>
+            </p>
+
+            <h3>Trade Options:</h3>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Offer</th>
+                            <th>Request</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@foreach (var trade in Model.TradeOptions)
+                        {*@
+                            <tr>
+                                <td>krowa</td>
+                                <td>2 króliki</td>
+                                <td><button class="btn btn-success">Trade</button></td>
+                            </tr><tr>
+                                <td>krowa</td>
+                                <td>2 króliki</td>
+                                <td><button class="btn btn-success">Trade</button></td>
+                            </tr><tr>
+                                <td>krowa</td>
+                                <td>2 króliki</td>
+                                <td><button class="btn btn-success">Trade</button></td>
+                            </tr>
+                        @*}*@
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function GetAnimalIcon(animal) {
+            switch (animal.toLowerCase()) {
+                case "rabbits": return "fas fa-rabbit";
+                case "sheep": return "fas fa-sheep";
+                case "pigs": return "fas fa-piggy-bank";
+                case "cows": return "fas fa-cow";
+                case "horses": return "fas fa-horse";
+                default: return "fas fa-question";
+            }
+        }
+    </script>
+}

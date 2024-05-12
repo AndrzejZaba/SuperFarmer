@@ -10,7 +10,7 @@ namespace SuperFarmer.Services
         public readonly string _directoryPath;
         public GameDataService()
         {
-            var projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            var projectDirectory = Directory.GetCurrentDirectory();
             _directoryPath = Path.Combine(projectDirectory, "DataFiles");
             _filePath = Path.Combine(_directoryPath, "gameData.json");
         }
