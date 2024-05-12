@@ -6,24 +6,34 @@ namespace SuperFarmer.Services
 {
     public class GameDataService : IGameDataService
     {
+        public readonly string _filePath;
+        public readonly string _directoryPath;
+        public GameDataService()
+        {
+            var projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            _directoryPath = Path.Combine(projectDirectory, "DataFiles");
+            _filePath = Path.Combine(_directoryPath, "gameData.json");
+        }
         public Game GetGameData()
         {
-            throw new NotImplementedException();
+            if (!File.Exists(_filePath))
+                throw new FileNotFoundException("Nie znaleziono pliku z danymi gry.");
+
+            string json = File.ReadAllText(_filePath);
+
+            Game gameData = JsonConvert.DeserializeObject<Game>(json);
+
+            return gameData;
         }
 
         public void SaveGameData(Game game)
         {
             var json = JsonConvert.SerializeObject(game);
 
-            var projectDirectory = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
+            if (!Directory.Exists(_directoryPath))
+                Directory.CreateDirectory(_directoryPath);
 
-            string directoryPath = Path.Combine(projectDirectory, "DataFiles");
-            string filePath = Path.Combine(directoryPath, "gameData.json");
-
-            if (!Directory.Exists(directoryPath))
-                Directory.CreateDirectory(directoryPath);
-
-            File.WriteAllText(filePath, json);
+            File.WriteAllText(_filePath, json);
         }
     }
 }

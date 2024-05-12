@@ -1,5 +1,6 @@
 using NLog.Web;
 using SuperFarmer.Middlewares;
+using SuperFarmer.Services;
 
 namespace SuperFarmer
 {
@@ -12,6 +13,8 @@ namespace SuperFarmer
             builder.Logging.ClearProviders();
             builder.Logging.SetMinimumLevel(LogLevel.Information);
             builder.Logging.AddNLogWeb();
+
+            builder.Services.AddMyServices();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

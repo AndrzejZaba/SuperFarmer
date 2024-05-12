@@ -1,7 +1,9 @@
-﻿namespace SuperFarmer.Interfaces
+﻿using SuperFarmer.Models;
+
+namespace SuperFarmer.Interfaces
 {
-    public class IGamePreparationService
+    public interface IGamePreparationService
     {
-        public 
+        public Game PrepareGame(int players);
     }
 }
