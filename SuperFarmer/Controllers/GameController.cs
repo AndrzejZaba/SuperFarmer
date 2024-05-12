@@ -8,11 +8,13 @@ namespace SuperFarmer.Controllers
     {
         private readonly IPlayerService _playerService;
         private readonly IDiceService _diceService;
+        private readonly IAnimalService _animalService;
 
-        public GameController(IPlayerService playerService, IDiceService diceService)
+        public GameController(IPlayerService playerService, IDiceService diceService, IAnimalService animalService)
         {
             _playerService = playerService;
             _diceService = diceService;
+            _animalService = animalService;
         }
 
         [HttpGet]
@@ -28,6 +30,8 @@ namespace SuperFarmer.Controllers
             if (diceRoll && !nextPlayer) 
             {
                 vm.DiceRsult = _diceService.RollDice();
+                _animalService.HandleDiceRoll(vm.DiceRsult);
+                vm.Player = _playerService.GetCurrentPlayer();
                 vm.Player.IsDiceRolled = true;
             }
             
