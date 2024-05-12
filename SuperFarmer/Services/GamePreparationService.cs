@@ -17,11 +17,11 @@ namespace SuperFarmer.Services
             var game = new Game
             {
                 Id = 1,
-                CurrentPlayerId = 1,
+                CurrentPlayerId = 0,
                 State = GameState.Started
             };
 
-            for (int i = 0; i < players; i++)
+            for (int i = 1; i <= players; i++)
             {
                 game.Players.Add(new Player
                 {

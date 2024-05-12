@@ -31,7 +31,7 @@ namespace SuperFarmer.Controllers
         {
             _gamePreparationService.PrepareGame(players);
 
-            return RedirectToAction("Privacy");
+            return RedirectToAction("PlayerPanel", "Game", 0);
         }
 
         public IActionResult Privacy()

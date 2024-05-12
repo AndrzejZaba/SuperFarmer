@@ -16,5 +16,6 @@ namespace SuperFarmer.Models
             { AnimalType.SmallDog, 0},
             { AnimalType.BigDog, 0}
         };
+        public bool IsTradeDone { get; set; }
     }
 }
