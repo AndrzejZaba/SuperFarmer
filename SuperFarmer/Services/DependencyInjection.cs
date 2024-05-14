@@ -11,6 +11,7 @@ namespace SuperFarmer.Services
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IDiceService, DiceService>();
             services.AddScoped<IAnimalService, AnimalService>();
+            services.AddScoped<ITradeOffersDataService, TradeOffersDataService>();
 
             return services;
         }

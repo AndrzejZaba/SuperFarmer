@@ -7,10 +7,14 @@ namespace SuperFarmer.Services
     public class GamePreparationService : IGamePreparationService
     {
         private readonly IGameDataService _gameDataService;
+        private readonly ITradeOffersDataService _tradeOffersDataService;
 
-        public GamePreparationService(IGameDataService gameDataService)
+        public GamePreparationService(
+            IGameDataService gameDataService, 
+            ITradeOffersDataService tradeOffersDataService)
         {
             _gameDataService = gameDataService;
+            _tradeOffersDataService = tradeOffersDataService;
         }
         public Game PrepareGame(int players)
         {
