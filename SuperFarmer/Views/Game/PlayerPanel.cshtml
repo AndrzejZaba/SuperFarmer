@@ -1,6 +1,5 @@
 ﻿@model PlayerPanelVm
 
-<!-- Załóżmy, że plik _Layout zawiera odniesienia do Bootstrapa -->
 @{
     ViewData["Title"] = "Player Panel";
 }
@@ -22,14 +21,14 @@
                     @foreach (var animal in Model.Player.Animals)
                     {
                         <tr>
-                            <td>@*<i class="@GetAnimalIcon(animal.Key) me-2"></i>*@@animal.Key</td>
+                            <td>@animal.Key</td>
                             <td>@animal.Value</td>
                         </tr>
                     }
                 </tbody>
             </table>
 
-            <h3>Dice Roll:</h3>
+            <h3>Dices Roll:</h3>
             @if (Model.Player.IsDiceRolled)
             {
             <p class="fs-4">
@@ -41,7 +40,7 @@
             }
             else
             {
-            <a href="/Game/PlayerPanel/true/false/0" class="btn btn-primary">Rzuć kośćmi</a>    
+            <a href="/Game/PlayerPanel/true/false/0" class="btn btn-primary">Roll dices</a>    
             }
 
         </div>
@@ -63,11 +62,11 @@
                         @foreach (var offer in Model.TradeOffers)
                         {
                             <tr>
-                                <td>@offer.OfferedAnimals.Values.FirstOrDefault() @offer.OfferedAnimals.Keys.FirstOrDefault()</td>
-                                <td>@offer.RequestedAnimals.Values.FirstOrDefault() @offer.RequestedAnimals.Keys.FirstOrDefault()</td>
+                                <td class="text-success">@offer.OfferedAnimals.Values.FirstOrDefault() @offer.OfferedAnimals.Keys.FirstOrDefault()</td>
+                                <td class="text-danger">@offer.RequestedAnimals.Values.FirstOrDefault() @offer.RequestedAnimals.Keys.FirstOrDefault()</td>
                                 @if(offer.CanBeExecuted)
                                 {
-                                    <td><a href="/Game/PlayerPanel/false/false/@offer.Id" class="btn btn-success">Wymiana</a></td>
+                                    <td><a href="/Game/PlayerPanel/false/false/@offer.Id" class="btn btn-success">Trade</a></td>
                                 }
                             </tr>
                         }
@@ -79,18 +78,3 @@
     </div>
 </div>
 
-@section scripts {
-
-    <script>
-        function GetAnimalIcon(animal) {
-            switch (animal.toLowerCase()) {
-                case "rabbits": return "fas fa-rabbit";
-                case "sheep": return "fas fa-sheep";
-                case "pigs": return "fas fa-piggy-bank";
-                case "cows": return "fas fa-cow";
-                case "horses": return "fas fa-horse";
-                default: return "fas fa-question";
-            }
-        }
-    </script>
-}

@@ -29,12 +29,11 @@ namespace SuperFarmer.Services
                 game.Players.Add(new Player
                 {
                     Id = i,
-                    Name = "Gracz " + i.ToString(),
+                    Name = "Player " + i.ToString(),
                     IsDiceRolled = false,
                     IsTradeDone = false,
                 });
-                game.AllAnimalsInHerd[AnimalType.Rabbit] -= 6;
-                game.AllAnimalsInHerd[AnimalType.Sheep] -= 12;
+                game.AllAnimalsInHerd[AnimalType.Rabbit] -= 1;
             }
 
             _gameDataService.SaveGameData(game);
