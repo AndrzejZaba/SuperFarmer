@@ -8,8 +8,8 @@ namespace SuperFarmer.Models
         public string Name { get; set; }
         public Dictionary<AnimalType, int> Animals { get; set; } = new Dictionary<AnimalType, int>
         {
-            { AnimalType.Rabbit, 1},
-            { AnimalType.Sheep, 0},
+            { AnimalType.Rabbit, 6},
+            { AnimalType.Sheep, 12},
             { AnimalType.Pig, 0},
             { AnimalType.Cow, 0},
             { AnimalType.Horse, 0},

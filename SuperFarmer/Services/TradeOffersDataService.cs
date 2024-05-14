@@ -142,9 +142,16 @@ namespace SuperFarmer.Services
 
             foreach (var offer in tradeOffers)
             {
-                if(player.IsTradeDone || player.IsDiceRolled || 
-                    player.Animals[offer.RequestedAnimals.Keys.FirstOrDefault()] < offer.RequestedAnimals.Values.FirstOrDefault() ||
-                    offer.OfferedAnimals.Values.FirstOrDefault() > game.AllAnimalsInHerd[offer.OfferedAnimals.Keys.FirstOrDefault()])
+
+                var requestedAnimalsPlayerHas = player.Animals[offer.RequestedAnimals.Keys.FirstOrDefault()];
+                var requestedAnimals = offer.RequestedAnimals.Values.FirstOrDefault();
+
+                var offeredAnimals = offer.OfferedAnimals.Values.FirstOrDefault();
+                var offeredAnimalsLeftInHerd = game.AllAnimalsInHerd[offer.OfferedAnimals.Keys.FirstOrDefault()];
+
+                if (player.IsTradeDone || player.IsDiceRolled ||
+                    requestedAnimalsPlayerHas < requestedAnimals ||
+                    offeredAnimals > offeredAnimalsLeftInHerd)
                 {
                     offer.CanBeExecuted = false;
                 }

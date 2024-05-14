@@ -91,9 +91,31 @@ namespace SuperFarmer.Services
             _gameDataService.SaveGameData(game);
         }
 
-        public void HandleTrade(Player player)
+        public void HandleTrade(Player player, TradeOffer tradeOffer)
         {
-            throw new NotImplementedException();
+            if (tradeOffer.CanBeExecuted)
+            {
+
+                var game = _gameDataService.GetGameData();
+
+                var requestedAnimal = tradeOffer.RequestedAnimals.Keys.FirstOrDefault();
+                var requestedAnimalsNumber = tradeOffer.RequestedAnimals.Values.FirstOrDefault();
+                
+                var offeredAnimal = tradeOffer.OfferedAnimals.Keys.FirstOrDefault();
+                var offeredAnimalsNumber = tradeOffer.OfferedAnimals.Values.FirstOrDefault();
+
+                if (player.Animals[requestedAnimal] >= requestedAnimalsNumber &&
+                    offeredAnimalsNumber <= game.AllAnimalsInHerd[offeredAnimal])
+                {
+                    player.Animals[requestedAnimal] -= requestedAnimalsNumber;
+                    game.AllAnimalsInHerd[requestedAnimal] += requestedAnimalsNumber;
+
+                    player.Animals[offeredAnimal] += offeredAnimalsNumber;
+                    game.AllAnimalsInHerd[offeredAnimal] -= offeredAnimalsNumber;
+                }
+
+
+            }
         }
     }
 }
