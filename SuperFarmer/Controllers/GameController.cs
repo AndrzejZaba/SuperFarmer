@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SuperFarmer.Enums;
 using SuperFarmer.Interfaces;
 using SuperFarmer.Models;
 
@@ -27,7 +28,7 @@ namespace SuperFarmer.Controllers
             {
                 Player = _playerService.GetCurrentPlayer(),
                 DiceRsult = null,
-                TradeOffers = null,
+                TradeOffers = null
             };
 
             if (diceRoll && !nextPlayer) 
@@ -37,25 +38,39 @@ namespace SuperFarmer.Controllers
                 vm.Player = _playerService.GetCurrentPlayer();
                 vm.Player.IsDiceRolled = true;
             }
-            
+
+            if (offerId != 0)
+            {
+                _animalService.HandleTrade(vm.Player, _tradeOffersDataService.GetTardeOfferById(offerId));
+            }
+
+            if (_playerService.HasPlayerWon(vm.Player))
+            {
+                return RedirectToAction("FinalScreen", new {playerId = vm.Player.Id });
+            }
+
             if (!diceRoll && nextPlayer) 
             {
                 vm.Player = _playerService.GetNextPlayer();
             }
 
             
-
-
-            if (offerId != 0)
-            {
-                _animalService.HandleTrade(vm.Player, _tradeOffersDataService.GetTardeOfferById(offerId));
-
-            }
+            
 
             vm.TradeOffers = _tradeOffersDataService.CanPlayerTrade(vm.Player);
 
 
+            
+
             return View(vm);
         }
+
+        [HttpGet]
+        [Route("Game/FinalScreen/{playerId}")]
+        public IActionResult FinalScreen(int playerId)
+        {
+            return View(playerId);
+        }
+
     }
 }

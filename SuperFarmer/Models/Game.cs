@@ -7,7 +7,7 @@ namespace SuperFarmer.Models
         public int Id { get; set; }
         public List<Player> Players { get; set; } = new List<Player>();
         public int CurrentPlayerId { get; set; }
-        public GameState State { get; set; }
+        
 
         /// <summary>
         /// Property describes all available animals in herd for trade and reproduction. If some 

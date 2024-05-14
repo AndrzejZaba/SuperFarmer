@@ -40,9 +40,16 @@ namespace SuperFarmer.Services
             return game.Players.Where(x => x.Id == game.CurrentPlayerId).FirstOrDefault();
         }
 
-        public void HandlerDiceRoll(AnimalType dice1, AnimalType dice2)
+        public bool HasPlayerWon(Player player)
         {
-            throw new NotImplementedException();
+            if (player.Animals[AnimalType.Rabbit] >= 1 &&
+                player.Animals[AnimalType.Sheep] >= 1 &&
+                player.Animals[AnimalType.Pig] >= 1 &&
+                player.Animals[AnimalType.Cow] >= 1 &&
+                player.Animals[AnimalType.Horse] >= 1)
+                return true;
+            else
+                return false;
         }
     }
 }

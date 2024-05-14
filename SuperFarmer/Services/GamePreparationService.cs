@@ -21,8 +21,7 @@ namespace SuperFarmer.Services
             var game = new Game
             {
                 Id = 1,
-                CurrentPlayerId = 1,
-                State = GameState.Started
+                CurrentPlayerId = 1
             };
 
             for (int i = 1; i <= players; i++)

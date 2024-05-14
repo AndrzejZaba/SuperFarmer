@@ -7,6 +7,6 @@ namespace SuperFarmer.Interfaces
     {
         Player GetCurrentPlayer();
         Player GetNextPlayer();
-        void HandlerDiceRoll(AnimalType dice1, AnimalType dice2);
+        bool HasPlayerWon(Player player);
     }
 }
