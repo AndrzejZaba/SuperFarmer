@@ -9,12 +9,14 @@ namespace SuperFarmer.Controllers
         private readonly IPlayerService _playerService;
         private readonly IDiceService _diceService;
         private readonly IAnimalService _animalService;
+        private readonly ITradeOffersDataService _tradeOffersDataService;
 
-        public GameController(IPlayerService playerService, IDiceService diceService, IAnimalService animalService)
+        public GameController(IPlayerService playerService, IDiceService diceService, IAnimalService animalService, ITradeOffersDataService tradeOffersDataService)
         {
             _playerService = playerService;
             _diceService = diceService;
             _animalService = animalService;
+            _tradeOffersDataService = tradeOffersDataService;
         }
 
         [HttpGet]
@@ -24,7 +26,8 @@ namespace SuperFarmer.Controllers
             var vm = new PlayerPanelVm
             {
                 Player = _playerService.GetCurrentPlayer(),
-                DiceRsult = null
+                DiceRsult = null,
+                TradeOffers = null
             };
 
             if (diceRoll && !nextPlayer) 
@@ -35,12 +38,14 @@ namespace SuperFarmer.Controllers
                 vm.Player.IsDiceRolled = true;
             }
             
-            if (diceRoll && nextPlayer) 
+            if (!diceRoll && nextPlayer) 
             {
                 vm.Player = _playerService.GetNextPlayer();
             }
 
-            
+            vm.TradeOffers = _tradeOffersDataService.CanPlayerTrade(vm.Player);
+
+
             return View(vm);
         }
     }

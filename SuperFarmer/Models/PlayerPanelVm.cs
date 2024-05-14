@@ -6,5 +6,6 @@ namespace SuperFarmer.Models
     {
         public Player Player { get; set; }
         public List<AnimalType> DiceRsult { get; set; }
+        public List<TradeOffer> TradeOffers { get; set;}
     }
 }

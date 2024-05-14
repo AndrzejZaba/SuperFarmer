@@ -38,7 +38,7 @@
                 <span class="badge bg-danger ">@Model.DiceRsult[1]</span>
             </p>
             <br />
-            <a href="/Game/PlayerPanel/true/true" class="btn btn-primary">Kolejny gracz</a>   
+            <a href="/Game/PlayerPanel/false/true" class="btn btn-primary">Kolejny gracz</a>   
             }
             else
             {
@@ -57,33 +57,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @*@foreach (var trade in Model.TradeOptions)
-                        {*@
+                        @foreach (var offer in Model.TradeOffers)
+                        {
                             <tr>
-                                <td>krowa</td>
-                                <td>2 króliki</td>
-                                @if(!Model.Player.IsTradeDone)
+                                <td>@offer.OfferedAnimals.Values.FirstOrDefault() @offer.OfferedAnimals.Keys.FirstOrDefault()</td>
+                                <td>@offer.RequestedAnimals.Values.FirstOrDefault() @offer.RequestedAnimals.Keys.FirstOrDefault()</td>
+                                @if(offer.CanBeExecuted)
                                 {
                                     <td><button class="btn btn-success">Trade</button></td>
                                 }
                             </tr>
-                            <tr>
-                                <td>krowa</td>
-                                <td>2 króliki</td>
-                                @if(!Model.Player.IsTradeDone)
-                                {
-                                    <td><button class="btn btn-success">Trade</button></td>
-                                }
-                            </tr>
-                            <tr>
-                                <td>krowa</td>
-                                <td>2 króliki</td>
-                                @if(!Model.Player.IsTradeDone)
-                                {
-                                    <td><button class="btn btn-success">Trade</button></td>
-                                }
-                            </tr>
-                        @*}*@
+                        }
                     </tbody>
                 </table>
             </div>
