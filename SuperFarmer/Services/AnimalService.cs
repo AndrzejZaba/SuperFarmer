@@ -17,11 +17,19 @@ namespace SuperFarmer.Services
         public void HandleDiceRoll(IList<AnimalType> diceResult)
         {
             var player = _playerService.GetCurrentPlayer();
+            var game = _gameDataService.GetGameData();
 
-            if(diceResult[0] == diceResult[1])
+            if (diceResult[0] == diceResult[1])
             {
                 var newAnimals = (player.Animals[diceResult[0]] + 2) / 2;
+
+                if (game.AllAnimalsInHerd[diceResult[0]] < newAnimals)
+                    newAnimals = game.AllAnimalsInHerd[diceResult[0]];
+                   
                 player.Animals[diceResult[0]] += newAnimals;
+                game.AllAnimalsInHerd[diceResult[0]] -= newAnimals;
+
+
             }
             else
             {
@@ -30,7 +38,13 @@ namespace SuperFarmer.Services
                     if (diceResult[i] != AnimalType.Fox && diceResult[i] != AnimalType.Wolf)
                     {
                         var newAnimals = (player.Animals[diceResult[i]] + 1) / 2;
+
+                        if (game.AllAnimalsInHerd[diceResult[i]] < newAnimals)
+                            newAnimals = game.AllAnimalsInHerd[diceResult[i]];
+
                         player.Animals[diceResult[i]] += newAnimals;
+                        game.AllAnimalsInHerd[diceResult[i]] -= newAnimals;
+
                     }
                 }
             }
@@ -38,9 +52,16 @@ namespace SuperFarmer.Services
             if (diceResult.Contains(AnimalType.Fox))
             {
                 if (player.Animals[AnimalType.SmallDog] == 1)
+                {
                     player.Animals[AnimalType.SmallDog] = 0;
+                    game.AllAnimalsInHerd[AnimalType.SmallDog]++;
+                }
                 else
-                    player.Animals[AnimalType.Rabbit] = 1;                
+                {
+                    var lostRabbits = player.Animals[AnimalType.Rabbit] - 1;
+                    player.Animals[AnimalType.Rabbit] = 1;
+                    game.AllAnimalsInHerd[AnimalType.Rabbit] += lostRabbits;
+                }
             }
             
             if (diceResult.Contains(AnimalType.Wolf))
@@ -48,17 +69,24 @@ namespace SuperFarmer.Services
                 if (player.Animals[AnimalType.BigDog] == 1)
                 {
                     player.Animals[AnimalType.BigDog] = 0;
+                    game.AllAnimalsInHerd[AnimalType.BigDog]++;
                 }
                 else
                 {
+                    var lostSheep = player.Animals[AnimalType.Sheep];
+                    var lostPigs = player.Animals[AnimalType.Pig];
+                    var lostCows = player.Animals[AnimalType.Cow];
                     player.Animals[AnimalType.Sheep] = 0;
                     player.Animals[AnimalType.Pig] = 0;
                     player.Animals[AnimalType.Cow] = 0;
+                    game.AllAnimalsInHerd[AnimalType.Sheep] += lostSheep;
+                    game.AllAnimalsInHerd[AnimalType.Pig] += lostPigs;
+                    game.AllAnimalsInHerd[AnimalType.Cow] += lostCows;
                 }
                 
             }
 
-            var game = _gameDataService.GetGameData();
+            
             game.Players[player.Id-1] = player;
             _gameDataService.SaveGameData(game);
         }

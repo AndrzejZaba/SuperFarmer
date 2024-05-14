@@ -30,6 +30,7 @@ namespace SuperFarmer.Services
                     IsDiceRolled = false,
                     IsTradeDone = false,
                 });
+                game.AllAnimalsInHerd[AnimalType.Rabbit] -= 1;
             }
 
             _gameDataService.SaveGameData(game);
