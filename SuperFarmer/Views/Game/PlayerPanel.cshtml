@@ -37,11 +37,11 @@
                 <span class="badge bg-danger ">@Model.DiceRsult[1]</span>
             </p>
             <br />
-            <a href="/Game/PlayerPanel/false/true" class="btn btn-primary">Kolejny gracz</a>   
+            <a href="/Game/PlayerPanel/false/true/0" class="btn btn-primary">Kolejny gracz</a>   
             }
             else
             {
-            <a href="/Game/PlayerPanel/true/false" class="btn btn-primary">Rzuć kośćmi</a>    
+            <a href="/Game/PlayerPanel/true/false/0" class="btn btn-primary">Rzuć kośćmi</a>    
             }
 
         </div>
@@ -67,7 +67,7 @@
                                 <td>@offer.RequestedAnimals.Values.FirstOrDefault() @offer.RequestedAnimals.Keys.FirstOrDefault()</td>
                                 @if(offer.CanBeExecuted)
                                 {
-                                    <td><button class="btn btn-success">Trade</button></td>
+                                    <td><a href="/Game/PlayerPanel/false/false/@offer.Id" class="btn btn-success">Wymiana</a></td>
                                 }
                             </tr>
                         }

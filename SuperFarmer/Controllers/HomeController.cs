@@ -31,7 +31,7 @@ namespace SuperFarmer.Controllers
         {
             _gamePreparationService.PrepareGame(players);
 
-            return RedirectToAction("PlayerPanel", "Game", new { diceRoll = false, nextPlayer = false });
+            return RedirectToAction("PlayerPanel", "Game", new { diceRoll = false, nextPlayer = false, offerId = 0 });
         }
 
         public IActionResult Privacy()

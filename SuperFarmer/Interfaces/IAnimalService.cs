@@ -6,6 +6,6 @@ namespace SuperFarmer.Interfaces
     public interface IAnimalService
     {
         void HandleDiceRoll(IList<AnimalType> diceResult);
-        void HandleTrade(Player player);
+        void HandleTrade(Player player, TradeOffer tradeOffer);
     }
 }

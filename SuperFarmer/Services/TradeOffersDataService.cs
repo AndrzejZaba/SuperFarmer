@@ -29,12 +29,14 @@ namespace SuperFarmer.Services
                 //1
                 new TradeOffer
                 {
+                    Id = 1,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Sheep, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Rabbit, 6 } },
                     CanBeExecuted = false
                 },
                 new TradeOffer
                 {
+                    Id = 2,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Rabbit, 6 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Sheep, 1 } },
                     CanBeExecuted = false
@@ -42,12 +44,14 @@ namespace SuperFarmer.Services
                 //2
                 new TradeOffer
                 {
+                    Id = 3,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Pig, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Sheep, 2 } },
                     CanBeExecuted = false
                 },
                 new TradeOffer
                 {
+                    Id = 4,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Sheep, 2 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Pig, 1 } },
                     CanBeExecuted = false
@@ -55,12 +59,14 @@ namespace SuperFarmer.Services
                 //3
                 new TradeOffer
                 {
+                    Id = 5,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Cow, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Pig, 3 } },
                     CanBeExecuted = false
                 },
                 new TradeOffer
                 {
+                    Id = 6,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Pig, 3 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Cow, 1 } },
                     CanBeExecuted = false
@@ -68,12 +74,14 @@ namespace SuperFarmer.Services
                 //4
                 new TradeOffer
                 {
+                    Id = 7,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Horse, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Cow, 2 } },
                     CanBeExecuted = false
                 },
                 new TradeOffer
                 {
+                    Id = 8,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Cow, 2 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Horse, 1 } },
                     CanBeExecuted = false
@@ -81,12 +89,14 @@ namespace SuperFarmer.Services
                 //5
                 new TradeOffer
                 {
+                    Id = 9,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.SmallDog, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Sheep, 1 } },
                     CanBeExecuted = false
                 },
                 new TradeOffer
                 {
+                    Id = 10,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Sheep, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.SmallDog, 1 } },
                     CanBeExecuted = false
@@ -94,12 +104,14 @@ namespace SuperFarmer.Services
                 //6
                 new TradeOffer
                 {
+                    Id = 11,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.BigDog, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Cow, 1 } },
                     CanBeExecuted = false
                 },
                 new TradeOffer
                 {
+                    Id = 12,
                     OfferedAnimals = new Dictionary<AnimalType, int> { { AnimalType.Cow, 1 } },
                     RequestedAnimals = new Dictionary<AnimalType, int> { { AnimalType.BigDog, 1 } },
                     CanBeExecuted = false
@@ -134,7 +146,13 @@ namespace SuperFarmer.Services
 
             return tradeOffers;
         }
-        
+
+        public TradeOffer GetTardeOfferById(int id)
+        {
+            var tradeOffers = GetTardeOffers();
+            return tradeOffers.Where(x => x.Id == id).FirstOrDefault();
+        }
+
         public List<TradeOffer> CanPlayerTrade(Player player)
         {
             var tradeOffers = GetTardeOffers();

@@ -93,8 +93,8 @@ namespace SuperFarmer.Services
 
         public void HandleTrade(Player player, TradeOffer tradeOffer)
         {
-            if (tradeOffer.CanBeExecuted)
-            {
+            //if (tradeOffer.CanBeExecuted)
+            //{
 
                 var game = _gameDataService.GetGameData();
 
@@ -112,10 +112,14 @@ namespace SuperFarmer.Services
 
                     player.Animals[offeredAnimal] += offeredAnimalsNumber;
                     game.AllAnimalsInHerd[offeredAnimal] -= offeredAnimalsNumber;
+
+                    player.IsTradeDone = true;
                 }
 
+                game.Players[player.Id - 1] = player;
+                _gameDataService.SaveGameData(game);
 
             }
-        }
+        //}
     }
 }

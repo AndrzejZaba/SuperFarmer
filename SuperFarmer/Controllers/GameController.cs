@@ -20,14 +20,14 @@ namespace SuperFarmer.Controllers
         }
 
         [HttpGet]
-        [Route("Game/PlayerPanel/{diceRoll}/{nextPlayer}")]
-        public IActionResult PlayerPanel(bool diceRoll = false, bool nextPlayer = false)
+        [Route("Game/PlayerPanel/{diceRoll}/{nextPlayer}/{offerId}")]
+        public IActionResult PlayerPanel(bool diceRoll = false, bool nextPlayer = false, int offerId = 0)
         {
             var vm = new PlayerPanelVm
             {
                 Player = _playerService.GetCurrentPlayer(),
                 DiceRsult = null,
-                TradeOffers = null
+                TradeOffers = null,
             };
 
             if (diceRoll && !nextPlayer) 
@@ -41,6 +41,15 @@ namespace SuperFarmer.Controllers
             if (!diceRoll && nextPlayer) 
             {
                 vm.Player = _playerService.GetNextPlayer();
+            }
+
+            
+
+
+            if (offerId != 0)
+            {
+                _animalService.HandleTrade(vm.Player, _tradeOffersDataService.GetTardeOfferById(offerId));
+
             }
 
             vm.TradeOffers = _tradeOffersDataService.CanPlayerTrade(vm.Player);
