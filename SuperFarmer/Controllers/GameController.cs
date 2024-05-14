@@ -54,13 +54,8 @@ namespace SuperFarmer.Controllers
                 vm.Player = _playerService.GetNextPlayer();
             }
 
-            
-            
 
             vm.TradeOffers = _tradeOffersDataService.CanPlayerTrade(vm.Player);
-
-
-            
 
             return View(vm);
         }

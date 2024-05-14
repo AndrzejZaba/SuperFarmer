@@ -171,11 +171,22 @@ namespace SuperFarmer.Services
                     requestedAnimalsPlayerHas < requestedAnimals ||
                     offeredAnimals > offeredAnimalsLeftInHerd)
                 {
+
                     offer.CanBeExecuted = false;
                 }
                 else
                 {
-                    offer.CanBeExecuted = true;
+
+                    if ((offer.OfferedAnimals.Keys.FirstOrDefault() == AnimalType.SmallDog ||
+                        offer.OfferedAnimals.Keys.FirstOrDefault() == AnimalType.BigDog) && 
+                        player.Animals[offer.OfferedAnimals.Keys.FirstOrDefault()] >= 1)
+                    {
+                        offer.CanBeExecuted = false;
+                    }
+                    else
+                    {
+                        offer.CanBeExecuted = true;
+                    }
                 }
             }
 

@@ -9,10 +9,10 @@ namespace SuperFarmer.Models
         public Dictionary<AnimalType, int> Animals { get; set; } = new Dictionary<AnimalType, int>
         {
             { AnimalType.Rabbit, 0},
-            { AnimalType.Sheep, 12},
-            { AnimalType.Pig, 1},
-            { AnimalType.Cow, 1},
-            { AnimalType.Horse, 1},
+            { AnimalType.Sheep, 10},
+            { AnimalType.Pig, 0},
+            { AnimalType.Cow, 10},
+            { AnimalType.Horse, 0},
             { AnimalType.SmallDog, 1},
             { AnimalType.BigDog, 1}
         };
